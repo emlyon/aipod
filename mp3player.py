@@ -51,7 +51,7 @@ def map(value, istart, istop, ostart, ostop):
 
 do_fade_in = False
 def fade_in(start_time, duration):
-    global music, time, do_fade_in
+    global music, time, map, do_fade_in
     v = music.get_volume()
     if v < 1:
         music.set_volume(map(time.time(), start_time, start_time + duration, 0, 1))
@@ -60,7 +60,7 @@ def fade_in(start_time, duration):
 
 do_fade_out = False
 def fade_out(start_time, duration):
-    global time, music, lcd, do_fade_out
+    global time, music, map, lcd, do_fade_out
     v = music.get_volume()
     if v > 0:
         music.set_volume(map(time.time(), start_time, start_time + duration, 1, 0))
@@ -87,8 +87,8 @@ def play_song():
         lcd_line_2 = lcd_line_2 + ' ' * (lcd_line_1_len - lcd_line_2_len)
 
     music.set_volume(0)
-    music.load('mp3s/' + data[n]['mp3'])
-    music.play()
+    # music.load('mp3s/' + data[n]['mp3'])
+    # music.play()
 
     do_fade_in = True
     start_fade_time = time.time()
@@ -99,6 +99,7 @@ while True:
     elapsed_time = now - start_time
 
     button.is_pressed = not button.value
+
     if button.is_pressed:
         do_release = False
 
@@ -126,9 +127,11 @@ while True:
             fade_out(start_fade_time, 5)
 
         index = int(elapsed_time / tick_delay) % len(lcd_line_1)
-        lcd.message = (lcd_line_1 * 2)[index:min(index + 16, len(lcd_line_1 * 2))] + '\n' + (lcd_line_2 * 2)[index:min(index + 16, len(lcd_line_2 * 2))]
+        lcd.message = (lcd_line_1 * 2)[index:min(index + 16, len(lcd_line_1 * 2))] + '\n' + 
+                      (lcd_line_2 * 2)[index:min(index + 16, len(lcd_line_2 * 2))]
+
     elif button.is_pressed:
         button.previous_state == 'UP'
 
 
-    time.sleep(0.01) # wait in seconds
+    time.sleep(0.01) # small delay
