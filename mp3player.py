@@ -51,7 +51,7 @@ def map(value, istart, istop, ostart, ostop):
 
 do_fade_in = False
 def fade_in(start_time, duration):
-    global do_fade_in
+    global music, time, do_fade_in
     v = music.get_volume()
     if v < 1:
         music.set_volume(map(time.time(), start_time, start_time + duration, 0, 1))
@@ -60,7 +60,7 @@ def fade_in(start_time, duration):
 
 do_fade_out = False
 def fade_out(start_time, duration):
-    global time, music, do_fade_out
+    global time, music, lcd, do_fade_out
     v = music.get_volume()
     if v > 0:
         music.set_volume(map(time.time(), start_time, start_time + duration, 1, 0))
@@ -70,7 +70,7 @@ def fade_out(start_time, duration):
         do_fade_out = False
 
 def play_song():
-    global data, lcd_line_1, lcd_line_2, music
+    global data, lcd_line_1, lcd_line_2, music, do_fade_in, start_fade_time
 
     n = randrange(nbArticles)
 
