@@ -87,8 +87,8 @@ def play_song():
         lcd_line_2 = lcd_line_2 + ' ' * (lcd_line_1_len - lcd_line_2_len)
 
     music.set_volume(0)
-    # music.load('mp3s/' + data[n]['mp3'])
-    # music.play()
+    music.load('mp3s/' + data[n]['mp3'])
+    music.play()
 
     do_fade_in = True
     start_fade_time = time.time()
