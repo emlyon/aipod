@@ -30,6 +30,7 @@ lcd = characterlcd.Character_LCD_Mono(lcd_rs, lcd_en, lcd_d4, lcd_d5, lcd_d6, lc
 lcd.clear()
 
 git_status = open('git_status.txt', 'r')
+print
 lcd.message = git_status
 time.sleep(5)
 lcd.clear()
