@@ -80,7 +80,7 @@ def fade_out(start_time, duration):
 
 def play_song():
     print('play a new song')
-    global data, lcd_line_1, lcd_line_2, music, do_fade_in, start_fade_time
+    global nbArticles, data, lcd_line_1, lcd_line_2, music, do_fade_in, start_fade_time
 
     n = randrange(nbArticles)
 
