@@ -10,7 +10,7 @@ import adafruit_character_lcd.character_lcd as characterlcd
 import pygame
 
 # Load data
-with open('data.json') as json_file:
+with open('output.json') as json_file:
     data = json.load(json_file)
 
 nbArticles = len(data)
@@ -82,8 +82,8 @@ def play_song():
     n = randrange(nbArticles)
 
     prefix = ' ' * 16
-    lcd_line_1 = prefix + data[n]['line1']
-    lcd_line_2 = prefix + data[n]['line2']
+    lcd_line_1 = prefix + data[str(n)]['line1']
+    lcd_line_2 = prefix + data[str(n)]['line2']
     lcd_line_1_len = len(lcd_line_1)
     lcd_line_2_len = len(lcd_line_2)
 
@@ -94,7 +94,7 @@ def play_song():
         lcd_line_2 = lcd_line_2 + ' ' * (lcd_line_1_len - lcd_line_2_len)
 
     music.set_volume(0)
-    music.load('mp3s/' + data[n]['mp3'])
+    music.load('mp3s/' + data[str(n)]['filename'])
     music.play()
 
     do_fade_in = True
