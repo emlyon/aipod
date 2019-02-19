@@ -124,7 +124,7 @@ while True:
             elapsed_time = 0
 
     else:
-        if button.previous_state == 'DOWN': # on button release
+        if button.previous_state == 'DOWN' and not do_release: # on button release
             print('button released')
             do_release = True
             start_release_time = now
