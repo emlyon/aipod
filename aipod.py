@@ -48,7 +48,7 @@ pygame.init()
 music = pygame.mixer.music
 
 tick_delay = 0.3
-tick = start_time = time.time()
+start_time = time.time()
 
 lcd_line_1 = ' ' * 16
 lcd_line_2 = ' ' * 16
@@ -103,6 +103,7 @@ def play_song():
     start_fade_time = time.time()
 
 
+print('Starting main loop')
 # Start main loop
 while True:
     now = time.time()
@@ -114,16 +115,25 @@ while True:
         do_release = False
 
         if button.previous_state == 'UP': # on button press
+            print('button pressed')
             button.previous_state = 'DOWN'
             play_song()
 
+            start_time = time.time()
+            elapsed_time = 0
+
     else:
         if button.previous_state == 'DOWN': # on button release
+            print('button released')
             do_release = True
             start_release_time = now
 
     if do_release:
+        # Check if button is still released after 4 seconds, fade out and stop music
         if now - start_release_time > 4 and not button.is_pressed:
+            if button.previous_state is 'DOWN':
+                print('starting fade out')
+
             button.previous_state = 'UP'
 
             if music.get_busy():
