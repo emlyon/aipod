@@ -119,7 +119,7 @@ while True:
             print('button pressed')
             button.previous_state = 'DOWN'
             play_song()
-
+            time.sleep(.5)
             start_time = time.time()
             elapsed_time = 0
 
@@ -160,5 +160,8 @@ while True:
         # play a new song
         print('play a new song')
         play_song()
+        time.sleep(.5)
+        start_time = time.time()
+        elapsed_time = 0
 
     time.sleep(0.01) # small delay
