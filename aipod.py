@@ -79,6 +79,7 @@ def fade_out(start_time, duration):
         do_fade_out = False
 
 def play_song():
+    print('play a new song')
     global data, lcd_line_1, lcd_line_2, music, do_fade_in, start_fade_time
 
     n = randrange(nbArticles)
@@ -103,14 +104,13 @@ def play_song():
     start_fade_time = time.time()
 
 
-print('Starting main loop')
 # Start main loop
+print('Starting main loop')
 while True:
     now = time.time()
     elapsed_time = now - start_time
 
     button.is_pressed = not button.value
-    # print('button.is_pressed: ' + str(button.is_pressed))
 
     if button.is_pressed:
         do_release = False
@@ -130,17 +130,15 @@ while True:
             start_release_time = now
 
     if do_release:
-        print('do release')
         # Check if button is still released after 4 seconds, fade out and stop music
         if now - start_release_time > 4 and not button.is_pressed:
-            if button.previous_state is 'DOWN':
+            if button.previous_state == 'DOWN' and music.get_busy()
                 print('starting fade out')
+                do_fade_out = True
+                start_fade_time = now
 
             button.previous_state = 'UP'
 
-            if music.get_busy():
-                do_fade_out = True
-                start_fade_time = now
 
     if music.get_busy():
         if do_fade_out:
@@ -149,16 +147,15 @@ while True:
         elif do_fade_in:
             print('do_fade_in')
             fade_out(start_fade_time, 5)
-        
+
         # update lcd message
         index = int(elapsed_time / tick_delay) % len(lcd_line_1)
         line_1 = (lcd_line_1 * 2)[index:min(index + 16, len(lcd_line_1 * 2))]
         line_2 = (lcd_line_2 * 2)[index:min(index + 16, len(lcd_line_2 * 2))]
-        lcd.message = line_1 + '\n' + line_2 
+        lcd.message = line_1 + '\n' + line_2
 
     elif button.is_pressed:
         # play a new song
-        print('play a new song')
         play_song()
         time.sleep(.5)
         start_time = time.time()
