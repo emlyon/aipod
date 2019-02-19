@@ -132,7 +132,7 @@ while True:
     if do_release:
         # Check if button is still released after 4 seconds, fade out and stop music
         if now - start_release_time > 4 and not button.is_pressed:
-            if button.previous_state == 'DOWN' and music.get_busy()
+            if button.previous_state == 'DOWN' and music.get_busy():
                 print('starting fade out')
                 do_fade_out = True
                 start_fade_time = now
