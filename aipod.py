@@ -142,7 +142,6 @@ while True:
 
             button.previous_state = 'UP'
 
-    print(music.get_busy())
     if music.get_busy() == 1:
         # update lcd message
         index = int(elapsed_time / tick_delay) % len(lcd_line_1)
