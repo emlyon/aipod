@@ -54,9 +54,7 @@ lcd_line_1 = ' ' * 16
 lcd_line_2 = ' ' * 16
 
 def map_value(value, istart, istop, ostart, ostop):
-    tmp = ostart + (ostop - ostart) * ((value - istart) / (istop - istart))
-    tmp = tmp if tmp < ostop else ostop
-    return tmp
+    return ostart + (ostop - ostart) * ((value - istart) / (istop - istart)) if value < istop else ostop
 
 do_fade_in = False
 def fade_in(start, duration):
@@ -77,7 +75,7 @@ def fade_out(start, duration):
     v = map_value(time.time(), start, start + duration, 100, 0)/100
     print('fade_out v:' + str(v) + '     v <= 0: ' + str(v <= 0))
     music.set_volume(v)
-    
+
     if v <= 0:
         print('end fade out')
         music.stop()
