@@ -49,7 +49,7 @@ music = pygame.mixer.music
 
 lcd_line_1 = ' ' * 16
 lcd_line_2 = ' ' * 16
-tick_delay = 0.5
+tick_delay = 0.4
 last_tick = start_time = time.time()
 
 
