@@ -59,20 +59,23 @@ def map_value(value, istart, istop, ostart, ostop):
     return tmp
 
 do_fade_in = False
-def fade_in(start_time, duration):
+def fade_in(start, duration):
     global music, time, do_fade_in
 
-    v = map_value(time.time(), start_time, start_time + duration, 0, 1)
+    v = map_value(time.time(), start, start + duration, 0, 1)
+    print('v:' + str(v))
     music.set_volume(v)
+    
     if v >= 1:
         print('end fade in')
         do_fade_in = False
 
 do_fade_out = False
-def fade_out(start_time, duration):
+def fade_out(start, duration):
     global music, time, lcd, do_fade_out
 
-    v = map_value(time.time(), start_time, start_time + duration, 0, 1)
+    v = map_value(time.time(), start, start + duration, 0, 1)
+    print('v:' + str(v))
     music.set_volume(v)
     
     if v <= 0:
