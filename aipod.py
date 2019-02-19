@@ -54,26 +54,29 @@ lcd_line_1 = ' ' * 16
 lcd_line_2 = ' ' * 16
 
 def map_value(value, istart, istop, ostart, ostop):
-    return ostart + (ostop - ostart) * ((value - istart) / (istop - istart))
+    tmp = ostart + (ostop - ostart) * ((value - istart) / (istop - istart))
+    tmp = tmp if tmp < ostop else ostop
+    return tmp
 
 do_fade_in = False
 def fade_in(start_time, duration):
     global music, time, do_fade_in
 
-    v = music.get_volume()
-    if v < 1:
-        music.set_volume(map_value(time.time(), start_time, start_time + duration, 0, 1))
-    else:
+    v = map_value(time.time(), start_time, start_time + duration, 0, 1)
+    music.set_volume(v)
+    if v >= 1:
+        print('end fade in')
         do_fade_in = False
 
 do_fade_out = False
 def fade_out(start_time, duration):
-    global time, music, lcd, do_fade_out
+    global music, time, lcd, do_fade_out
+
+    v = map_value(time.time(), start_time, start_time + duration, 0, 1)
+    music.set_volume(v)
     
-    v = music.get_volume()
-    if v > 0:
-        music.set_volume(map_value(time.time(), start_time, start_time + duration, 1, 0))
-    else:
+    if v <= 0:
+        print('end fade out')
         music.stop()
         lcd.message = (' ' * 16) + "\n" + (' ' * 16)
         do_fade_out = False
@@ -132,7 +135,7 @@ while True:
     if do_release:
         # Check if button is still released after 4 seconds, fade out and stop music
         if now - start_release_time > 4 and not button.is_pressed:
-            if button.previous_state == 'DOWN' and music.get_busy():
+            if button.previous_state == 'DOWN' and music.get_busy() == 1:
                 print('starting fade out')
                 do_fade_out = True
                 start_fade_time = now
@@ -140,19 +143,20 @@ while True:
             button.previous_state = 'UP'
 
     print(music.get_busy())
-    if music.get_busy():
+    if music.get_busy() == 1:
+        # update lcd message
+        index = int(elapsed_time / tick_delay) % len(lcd_line_1)
+        line_1 = (lcd_line_1 * 2)[index:min(index + 16, len(lcd_line_1 * 2))]
+        line_2 = (lcd_line_2 * 2)[index:min(index + 16, len(lcd_line_2 * 2))]
+        # lcd.message = line_1 + '\n' + line_2
+        lcd.message = 'playing'
+
         if do_fade_out:
             print('do_fade_out')
             fade_in(start_fade_time, 5)
         elif do_fade_in:
             print('do_fade_in')
             fade_out(start_fade_time, 5)
-
-        # update lcd message
-        index = int(elapsed_time / tick_delay) % len(lcd_line_1)
-        line_1 = (lcd_line_1 * 2)[index:min(index + 16, len(lcd_line_1 * 2))]
-        line_2 = (lcd_line_2 * 2)[index:min(index + 16, len(lcd_line_2 * 2))]
-        lcd.message = line_1 + '\n' + line_2
 
     elif button.is_pressed:
         # play a new song
