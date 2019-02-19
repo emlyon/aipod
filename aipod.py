@@ -49,7 +49,7 @@ music = pygame.mixer.music
 
 lcd_line_1 = ' ' * 16
 lcd_line_2 = ' ' * 16
-tick_delay = 0.3
+tick_delay = 0.5
 last_tick = start_time = time.time()
 
 
@@ -150,6 +150,7 @@ while True:
         index = int(elapsed_time / tick_delay) % len(lcd_line_1)
         line_1 = (lcd_line_1 * 2)[index:min(index + 16, len(lcd_line_1 * 2))]
         line_2 = (lcd_line_2 * 2)[index:min(index + 16, len(lcd_line_2 * 2))]
+        print(line_1 + '\n' + line_2)
         lcd.message = line_1 + '\n' + line_2
         last_tick = time.time()
 
