@@ -139,7 +139,7 @@ while True:
 
             button.previous_state = 'UP'
 
-
+    print(music.get_busy())
     if music.get_busy():
         if do_fade_out:
             print('do_fade_out')
