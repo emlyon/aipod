@@ -47,11 +47,11 @@ do_release = False
 pygame.init()
 music = pygame.mixer.music
 
-tick_delay = 0.3
-start_time = time.time()
-
 lcd_line_1 = ' ' * 16
 lcd_line_2 = ' ' * 16
+tick_delay = 0.3
+last_tick = start_time = time.time()
+
 
 def map_value(value, istart, istop, ostart, ostop):
     return ostart + (ostop - ostart) * ((value - istart) / (istop - istart)) if value < istop else ostop
@@ -137,7 +137,7 @@ while True:
         if do_fade_out:
             fade_out(start_fade_time, 5)
         elif do_fade_in:
-            fade_in(start_fade_time, 5)
+            fade_in(start_fade_time, 2)
     elif button.is_pressed:
         # play a new song
         play_song()
@@ -145,11 +145,12 @@ while True:
         start_time = time.time()
         elapsed_time = 0
 
-
     # update lcd message
-    index = int(elapsed_time / tick_delay) % len(lcd_line_1)
-    line_1 = (lcd_line_1 * 2)[index:min(index + 16, len(lcd_line_1 * 2))]
-    line_2 = (lcd_line_2 * 2)[index:min(index + 16, len(lcd_line_2 * 2))]
-    lcd.message = line_1 + '\n' + line_2
+    if now - last_tick > tick_delay:
+        index = int(elapsed_time / tick_delay) % len(lcd_line_1)
+        line_1 = (lcd_line_1 * 2)[index:min(index + 16, len(lcd_line_1 * 2))]
+        line_2 = (lcd_line_2 * 2)[index:min(index + 16, len(lcd_line_2 * 2))]
+        lcd.message = line_1 + '\n' + line_2
+        last_tick = time.time()
 
-    time.sleep(0.1) # small delay
+    time.sleep(0.05) # small delay
