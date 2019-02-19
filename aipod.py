@@ -110,7 +110,7 @@ while True:
     elapsed_time = now - start_time
 
     button.is_pressed = not button.value
-    print('button.is_pressed: ' + str(button.is_pressed))
+    # print('button.is_pressed: ' + str(button.is_pressed))
 
     if button.is_pressed:
         do_release = False
