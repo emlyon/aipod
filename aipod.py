@@ -110,6 +110,7 @@ while True:
     elapsed_time = now - start_time
 
     button.is_pressed = not button.value
+    print('button.is_pressed: ' + str(button.is_pressed))
 
     if button.is_pressed:
         do_release = False
@@ -129,6 +130,7 @@ while True:
             start_release_time = now
 
     if do_release:
+        print('do release')
         # Check if button is still released after 4 seconds, fade out and stop music
         if now - start_release_time > 4 and not button.is_pressed:
             if button.previous_state is 'DOWN':
@@ -142,8 +144,10 @@ while True:
 
     if music.get_busy():
         if do_fade_out:
+            print('do_fade_out')
             fade_in(start_fade_time, 5)
         elif do_fade_in:
+            print('do_fade_in')
             fade_out(start_fade_time, 5)
         
         # update lcd message
@@ -154,6 +158,7 @@ while True:
 
     elif button.is_pressed:
         # play a new song
+        print('play a new song')
         play_song()
 
     time.sleep(0.01) # small delay
