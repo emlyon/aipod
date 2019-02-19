@@ -62,9 +62,9 @@ do_fade_in = False
 def fade_in(start, duration):
     global music, time, do_fade_in
 
-    v = map_value(time.time(), start, start + duration, 0, 100)
-    print('fade_in v:' + str(v) + '     v >= 100: ' + str(v >= 100))
-    music.set_volume(v/100)
+    v = map_value(time.time(), start, start + duration, 0, 100)/100
+    print('fade_in v:' + str(v) + '     v >= 1: ' + str(v >= 1))
+    music.set_volume(v)
 
     if v >= 1:
         print('end fade in')
@@ -74,9 +74,9 @@ do_fade_out = False
 def fade_out(start, duration):
     global music, time, lcd, do_fade_out
 
-    v = map_value(time.time(), start, start + duration, 100, 0)
+    v = map_value(time.time(), start, start + duration, 100, 0)/100
     print('fade_out v:' + str(v) + '     v <= 0: ' + str(v <= 0))
-    music.set_volume(v/100)
+    music.set_volume(v)
     
     if v <= 0:
         print('end fade out')
