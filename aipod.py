@@ -29,7 +29,7 @@ lcd = characterlcd.Character_LCD_Mono(lcd_rs, lcd_en, lcd_d4, lcd_d5, lcd_d6, lc
 
 lcd.clear()
 
-with open('git_status.json') as git_file:
+with open('/home/pi/git_status.json') as git_file:
     git_status = json.load(git_file)['result']
 
 lcd.message = git_status

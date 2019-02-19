@@ -42,5 +42,5 @@ passphrase: makerslab
 crontab -e
 
 # and add:
-@reboot sleep 10 && cd /home/pi/aipod && echo `{ git pull && echo '{"result":"up to date"}' > git_status.json ; } || echo '{"result":"could not update"}' > git_status.json` && python3 aipod.py
+@reboot sleep 10 && cd /home/pi/aipod && echo `{ git pull && echo '{"result":"up to date"}' > /home/pi/git_status.json ; } || echo '{"result":"could not update"}' > /home/pi/git_status.json` && python3 aipod.py
 ```
