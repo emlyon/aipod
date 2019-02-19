@@ -149,8 +149,7 @@ while True:
         line_1 = (lcd_line_1 * 2)[index:min(index + 16, len(lcd_line_1 * 2))]
         line_2 = (lcd_line_2 * 2)[index:min(index + 16, len(lcd_line_2 * 2))]
         # lcd.message = line_1 + '\n' + line_2
-        lcd.clear()
-        lcd.message = 'playing'
+        lcd.message = 'playing         ' + '\n' + (' ' * 16)
 
         if do_fade_out:
             fade_out(start_fade_time, 5)
