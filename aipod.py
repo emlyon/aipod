@@ -49,9 +49,9 @@ def print_git_status():
     global json, lcd, time
     with open('/home/pi/git_status.json') as git_file:
         git_status = json.load(git_file)['result']
-        lcd.message = git_status
-        time.sleep(5)
-        lcd.clear()
+    lcd.message = git_status
+    time.sleep(5)
+    lcd.clear()
 
 def load_data():
     global data, nb_articles
