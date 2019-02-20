@@ -1,5 +1,18 @@
 # aipod
 
+## Wiring
+![](aipod.svg)
+Display is a 16x2 chars LCD connected as follow:
+- RS is connected to GPIO22
+- EN is connected to GPIO17
+- D4 is connected to GPIO25
+- D5 is connected to GPIO24
+- D6 is connected to GPIO23
+- D7 is connected to GPIO18
+
+Buttons are connected to GPIO4, configured as input pullup.
+
+
 ## Install & run
 
 **Clone repo**
@@ -46,5 +59,7 @@ crontab -e
 ```
 
 ## Resources
+- [Adafruit-Blinka](https://pypi.org/project/Adafruit-Blinka/)
+- [Adafruit CIRCUITPYTHON_CHARLCD Library](https://circuitpython.readthedocs.io/projects/charlcd/en/latest/)
+- [pygame.mixer.music](https://www.pygame.org/docs/ref/music.html)
 - [Drive a 16x2 LCD with the Raspberry Pi Output Character](https://learn.adafruit.com/drive-a-16x2-lcd-directly-with-a-raspberry-pi?view=all)
-- [pygame.music](https://www.pygame.org/docs/ref/music.html)
