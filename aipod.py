@@ -7,7 +7,7 @@ import adafruit_character_lcd.character_lcd as characterlcd
 import pygame
 
 def init_lcd():
-    global digitalio, characterlcd, lcd, lcd_columns, lcd_line_1, lcd_line_2, time, tick_delay, last_tick, start_time
+    global digitalio, board, characterlcd, lcd, lcd_columns, lcd_line_1, lcd_line_2, time, tick_delay, last_tick, start_time
 
     lcd_columns = 16
     lcd_rows = 2
