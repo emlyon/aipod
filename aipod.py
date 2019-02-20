@@ -7,7 +7,7 @@ import adafruit_character_lcd.character_lcd as characterlcd
 import pygame
 
 def init_lcd():
-    global digitalio, board, characterlcd, lcd, lcd_columns, lcd_line_1, lcd_line_2, time, tick_delay, last_tick, start_time
+    global digitalio, board, characterlcd, time, lcd, lcd_columns, lcd_line_1, lcd_line_2, tick_delay, last_tick, start_time
 
     lcd_columns = 16
     lcd_rows = 2
@@ -22,7 +22,8 @@ def init_lcd():
     lcd_line_1 = ' ' * 16
     lcd_line_2 = ' ' * 16
     tick_delay = 0.3
-    last_tick = start_time = time.time()
+    last_tick = time.time()
+    start_time = time.time()
 
 def init_button():
     global digitalio, button, do_release
@@ -45,7 +46,7 @@ def init():
     init_player()
 
 def print_git_status():
-    global lcd, time
+    global json, lcd, time
     with open('/home/pi/git_status.json') as git_file:
         git_status = json.load(git_file)['result']
         lcd.message = git_status
