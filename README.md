@@ -46,5 +46,5 @@ crontab -e
 ```
 
 ## Resources
-- [Update Your Pi to the Latest Raspbian](https://learn.adafruit.com/drive-a-16x2-lcd-directly-with-a-raspberry-pi?view=all#update-your-pi-to-the-latest-raspbian-3-1)
+- [Drive a 16x2 LCD with the Raspberry Pi Output Character](https://learn.adafruit.com/drive-a-16x2-lcd-directly-with-a-raspberry-pi?view=all)
 - [pygame.music](https://www.pygame.org/docs/ref/music.html)

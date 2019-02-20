@@ -1,6 +1,3 @@
-# https://learn.adafruit.com/drive-a-16x2-lcd-directly-with-a-raspberry-pi?view=all
-# https://www.pygame.org/docs/ref/mixer.html
-
 import json
 import time
 from random import randrange
@@ -9,54 +6,64 @@ import digitalio
 import adafruit_character_lcd.character_lcd as characterlcd
 import pygame
 
-# Load data
-with open('output.json') as json_file:
-    data = json.load(json_file)
+def init_lcd():
+    global digitalio, characterlcd, lcd, lcd_columns, lcd_line_1, lcd_line_2, time, tick_delay, last_tick
 
-nbArticles = len(data)
+    lcd_columns = 16
+    lcd_rows = 2
+    lcd_rs = digitalio.DigitalInOut(board.D22)
+    lcd_en = digitalio.DigitalInOut(board.D17)
+    lcd_d4 = digitalio.DigitalInOut(board.D25)
+    lcd_d5 = digitalio.DigitalInOut(board.D24)
+    lcd_d6 = digitalio.DigitalInOut(board.D23)
+    lcd_d7 = digitalio.DigitalInOut(board.D18)
+    lcd = characterlcd.Character_LCD_Mono(lcd_rs, lcd_en, lcd_d4, lcd_d5, lcd_d6, lcd_d7, lcd_columns, lcd_rows)
+    lcd.clear()
+    lcd_line_1 = ' ' * 16
+    lcd_line_2 = ' ' * 16
+    tick_delay = 0.3
+    last_tick = start_time = time.time()
 
-# Init LCD
-lcd_columns = 16
-lcd_rows = 2
-lcd_rs = digitalio.DigitalInOut(board.D22)
-lcd_en = digitalio.DigitalInOut(board.D17)
-lcd_d4 = digitalio.DigitalInOut(board.D25)
-lcd_d5 = digitalio.DigitalInOut(board.D24)
-lcd_d6 = digitalio.DigitalInOut(board.D23)
-lcd_d7 = digitalio.DigitalInOut(board.D18)
+def init_button():
+    global digitalio, button, do_release
+    button = digitalio.DigitalInOut(board.D4)
+    button.direction = digitalio.Direction.INPUT
+    button.pull = digitalio.Pull.UP
+    button.previous_state = 'UP'
+    do_release = False
 
-lcd = characterlcd.Character_LCD_Mono(lcd_rs, lcd_en, lcd_d4, lcd_d5, lcd_d6, lcd_d7, lcd_columns, lcd_rows)
+def init_player():
+    global pygame, music, do_fade_in, do_fade_out
+    pygame.init()
+    music = pygame.mixer.music
+    do_fade_in = False
+    do_fade_out = False
 
-lcd.clear()
+def init():
+    init_lcd()
+    init_button()
+    init_player()
 
-with open('/home/pi/git_status.json') as git_file:
-    git_status = json.load(git_file)['result']
+def print_git_status():
+    global lcd, time
+    with open('/home/pi/git_status.json') as git_file:
+        git_status = json.load(git_file)['result']
 
-lcd.message = git_status
-time.sleep(5)
-lcd.clear()
+        for i in range(5):
+            lcd.message = git_status
+            time.sleep(1)
+            lcd.clear()
 
-# Init button
-button = digitalio.DigitalInOut(board.D4)
-button.direction = digitalio.Direction.INPUT
-button.pull = digitalio.Pull.UP
-button.previous_state = 'UP'
-do_release = False
+def load_data():
+    global data, nb_article
 
-# Init mp3 player
-pygame.init()
-music = pygame.mixer.music
-
-lcd_line_1 = ' ' * 16
-lcd_line_2 = ' ' * 16
-tick_delay = 0.3
-last_tick = start_time = time.time()
-
+    with open('output.json') as json_file:
+        data = json.load(json_file)
+        nb_articles = len(data)
 
 def map_value(value, istart, istop, ostart, ostop):
     return ostart + (ostop - ostart) * ((value - istart) / (istop - istart)) if value < istop else ostop
 
-do_fade_in = False
 def fade_in(start, duration):
     global music, time, do_fade_in
     v = map_value(time.time(), start, start + duration, 0, 100)/100
@@ -64,7 +71,6 @@ def fade_in(start, duration):
     if v >= 1:
         do_fade_in = False
 
-do_fade_out = False
 def fade_out(start, duration):
     global music, time, lcd, do_fade_out, lcd_line_1, lcd_line_2
     v = map_value(time.time(), start, start + duration, 100, 0)/100
@@ -77,9 +83,9 @@ def fade_out(start, duration):
 
 def play_song():
     print('play a new song')
-    global nbArticles, data, lcd_line_1, lcd_line_2, music, do_fade_in, start_fade_time
+    global nb_articles, data, lcd_line_1, lcd_line_2, music, do_fade_in, start_fade_time
 
-    n = randrange(nbArticles)
+    n = randrange(nb_articles)
 
     prefix = ' ' * 16
     lcd_line_1 = prefix + data[str(n)]['line1']
@@ -100,6 +106,9 @@ def play_song():
     do_fade_in = True
     start_fade_time = time.time()
 
+init()
+print_git_status()
+load_data()
 
 # Start main loop
 print('Starting main loop')
