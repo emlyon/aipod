@@ -53,7 +53,7 @@ def print_git_status():
         lcd.clear()
 
 def load_data():
-    global data, nb_article
+    global data, nb_articles
 
     with open('output.json') as json_file:
         data = json.load(json_file)
