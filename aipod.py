@@ -21,7 +21,7 @@ def init_lcd():
     lcd.clear()
     lcd_line_1 = ' ' * 16
     lcd_line_2 = ' ' * 16
-    tick_delay = 0.3
+    tick_delay = 0.2
     last_tick = time.time()
     start_time = time.time()
 
