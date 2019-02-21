@@ -3,8 +3,8 @@
 ## Wiring
 ![](aipod.svg)
 Display is a 16x2 chars LCD connected as follow:
-- RS is connected to GPIO22
-- EN is connected to GPIO17
+- RS is connected to GPIO16
+- EN is connected to GPIO12
 - D4 is connected to GPIO25
 - D5 is connected to GPIO24
 - D6 is connected to GPIO23
