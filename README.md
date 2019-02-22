@@ -1,17 +1,24 @@
 # aipod
 
+## Bill of Material
+- [Raspberry Pi 3](https://www.raspberrypi.org/products/)
+- [16x2 LCD Display LCM1602C V2.1](http://www.datasheetcafe.com/lcm1602c-datasheet-pdf/)
+- [Arcade buttons](https://www.amazon.fr/gp/product/B01N5DVINY)
+- Ampli / Speakers (refs needed)
+
 ## Wiring
 ![](aipod.svg)
-Display is a 16x2 chars LCD connected as follow:
+
+16x2 LCD Display ([LCM1602C V2.1](http://www.datasheetcafe.com/lcm1602c-datasheet-pdf/)) is connected as follow:
 - RS is connected to GPIO16
 - EN is connected to GPIO12
 - D4 is connected to GPIO25
 - D5 is connected to GPIO24
 - D6 is connected to GPIO23
 - D7 is connected to GPIO18
+- (+ several GND and 5V)
 
-Buttons are connected to GPIO4, configured as input pullup.
-
+[Buttons](https://www.amazon.fr/gp/product/B01N5DVINY) are connected to GPIO4, configured as input pullup. (+ GND)
 
 ## Install & run
 
