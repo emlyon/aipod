@@ -25,7 +25,7 @@ ___
 
 ## Install & run
 
-Download the image [here](https://mega.nz/#!J9cXBCLA!xZrNihUM6XFwxSyXiPqJTmqI85lqSSZrZGT_HBga6Kw) and burn it on an 8GB micro SD using [etcher](https://www.balena.io/etcher/) or start with a fresh install of [Raspbian Stretch with desktop and recommended software]()
+Download the image [here](https://mega.nz/#!J9cXBCLA!xZrNihUM6XFwxSyXiPqJTmqI85lqSSZrZGT_HBga6Kw) and burn it on an 8GB micro SD using [etcher](https://www.balena.io/etcher/) or start with a fresh install of [Raspbian Stretch with desktop and recommended software](https://www.raspberrypi.org/downloads/raspbian/)
 
 **Clone repo**
 ```bash
