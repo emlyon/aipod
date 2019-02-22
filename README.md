@@ -70,7 +70,7 @@ crontab -e
 @reboot sleep 10 && cd /home/pi/aipod && echo `{ git pull && echo '{"result":"up to date"}' > /home/pi/git_status.json ; } || echo '{"result":"could not update"}' > /home/pi/git_status.json` && python3 aipod.py
 ```
 
-Finally create a hotspot with your phone using `makerslab` for **SSID and password**, and reboot the Raspberry Pi. LCD dislay should print `up to date`if successful, `could not update`otherwise.
+Finally create a hotspot with your phone using `makerslab` for **SSID and password**, and reboot the Raspberry Pi. LCD dislay should print `up to date` if successful, `could not update` otherwise.
 
 ## Resources
 - [Adafruit-Blinka](https://pypi.org/project/Adafruit-Blinka/)
