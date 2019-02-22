@@ -4,7 +4,8 @@
 - [Raspberry Pi 3](https://www.raspberrypi.org/products/)
 - [16x2 LCD Display LCM1602C V2.1](http://www.datasheetcafe.com/lcm1602c-datasheet-pdf/)
 - [Arcade buttons](https://www.amazon.fr/gp/product/B01N5DVINY)
-- Ampli / Speakers (refs needed)
+- [Ampli CALIBER CA752](http://webshop.caliber.nl/products/view/details/ca75-2.html)
+- [Speakers FRS 8-8 Ohm](http://www.visaton.de/en/products/fullrange-systems/frs-8-8-ohm)
 
 ## Wiring
 ![](aipod.svg)
