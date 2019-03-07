@@ -21,7 +21,7 @@ def init_lcd():
     lcd.clear()
     lcd_line_1 = ' ' * 16
     lcd_line_2 = ' ' * 16
-    tick_delay = 0.2
+    tick_delay = 0.3
     last_tick = time.time()
     start_time = time.time()
 
@@ -148,10 +148,7 @@ while True:
             fade_in(start_fade_time, 2)
     elif button.is_pressed:
         # play a new song
-        play_song()
-        time.sleep(.5)
-        start_time = time.time()
-        elapsed_time = 0
+        button.previous_state == 'UP'
 
     # update lcd message
     if now - last_tick > tick_delay:
@@ -159,6 +156,7 @@ while True:
         line_1 = (lcd_line_1 * 2)[index:min(index + 16, len(lcd_line_1 * 2))]
         line_2 = (lcd_line_2 * 2)[index:min(index + 16, len(lcd_line_2 * 2))]
         # print(line_1 + '\n' + line_2)
+        lcd.clear()
         lcd.message = line_1 + '\n' + line_2
         last_tick = time.time()
 
