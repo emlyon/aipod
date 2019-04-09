@@ -28,8 +28,8 @@ We used [Autodesk Fusion 360](https://www.autodesk.com/products/fusion-360/overv
 General assembly instructions can be found here : https://hackmd.io/7cDdYA7nRJGSax_ZulLNjg?both
 
 
-![](https://github.com/emlyon/makers-furniture/raw/master/AIpod/img/AIpod_chair_assembly_Page_1.jpg) 
-![](https://github.com/emlyon/makers-furniture/raw/master/AIpod/img/AIpod_chair_assembly_Page_2.jpg)
+![](fabrication/img/AIpod_chair_assembly_Page_1.jpg) 
+![](fabrication/img/AIpod_chair_assembly_Page_2.jpg)
 
 A detailled list of the parts and an assembly guide can be found [in this pdf](fabrication/AIpod_chair_assembly.pdf).
 
