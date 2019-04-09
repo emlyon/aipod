@@ -10,11 +10,29 @@ Seating in the chair, you can listen the sound of research, and discover researc
 ___
 
 ## Fabrication
-Plans and instructions are available here: https://github.com/emlyon/makers-furniture/tree/master/AIpod
+
+### CNC milling
+
+AIpod has been designed to be fabricated using a CNC router with plywood 18mm.
+
+Use a 8mm flat milling bit to cut. The [3D model](AIpod_chair.3dm) includes the layout for CNC milling 1250x2500mm plywood panels.
+
+![AIpod_layout_preview](img/AIpod_layout_preview.png)
+
+We used [Autodesk Fusion 360](https://www.autodesk.com/products/fusion-360/overview) to generate the toolpaths : you can find tutorials about the _Manufacture_ feature of Fusion 360 on [Autodesk website](https://f360ap.autodesk.com/courses#creating-toolpaths-and-programs-cam).
+
+---
+
+### Assembly
+
+General assembly instructions can be found here : https://hackmd.io/7cDdYA7nRJGSax_ZulLNjg?both
+
+A detailled list of the parts and an assembly guide can be found [in this pdf](AIpod_chair_assembly.pdf).
 
 ___
 
 ## Electronic
+
 ### Bill of Material
 - [Raspberry Pi 3](https://www.raspberrypi.org/products/)
 - [16x2 LCD Display LCM1602C V2.1](http://www.datasheetcafe.com/lcm1602c-datasheet-pdf/)
