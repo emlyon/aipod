@@ -1,4 +1,4 @@
-# AIpod
+# AIpod 
 
 ![](https://github.com/emlyon/makers-furniture/raw/master/AIpod/img/IMG_20190313_185002.jpg)  
 AIpod is an open source chair that was designed and crafted at emlyon Business School’s makers’ lab during a bootcamp about Artificial Intelligence by staff, students and alumni.
