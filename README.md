@@ -1,13 +1,28 @@
-# aipod
+# AIpod
 
-## Bill of Material
+![](https://github.com/emlyon/makers-furniture/raw/master/AIpod/img/IMG_20190313_185002.jpg)  
+AIpod is an open source chair that was designed and crafted at emlyon Business School’s makers’ lab during a bootcamp about Artificial Intelligence by staff, students and alumni.
+
+IBM Watson NLU was used to analyze the topic, emotions and semantics of academic papers. Then, Google magenta AI composed piano musics based on this analysis. The LCD screen displays the author and title of the interpreted paper.
+
+Seating in the chair, you can listen the sound of research, and discover research papers in a new way!
+
+___
+
+## Fabrication
+Plans and instructions are available here: https://github.com/emlyon/makers-furniture/tree/master/AIpod
+
+___
+
+## Electronic
+### Bill of Material
 - [Raspberry Pi 3](https://www.raspberrypi.org/products/)
 - [16x2 LCD Display LCM1602C V2.1](http://www.datasheetcafe.com/lcm1602c-datasheet-pdf/)
 - [Arcade buttons](https://www.amazon.fr/gp/product/B01N5DVINY)
 - [Ampli CALIBER CA752](http://webshop.caliber.nl/products/view/details/ca75-2.html)
 - [Speakers FRS 8-8 Ohm](http://www.visaton.de/en/products/fullrange-systems/frs-8-8-ohm)
 
-## Wiring
+### Wiring
 ![wiring](aipod.svg)
 
 16x2 LCD Display is connected as follow:
@@ -20,10 +35,10 @@
 - (+ 4xGND and 2x5V)
 
 [Buttons](https://www.amazon.fr/gp/product/B01N5DVINY) are connected to GPIO4, configured as input pullup. (+ GND)
+
 ___
 
-
-## Install & run
+### Install & run
 
 Download the image [here](https://mega.nz/#!J9cXBCLA!xZrNihUM6XFwxSyXiPqJTmqI85lqSSZrZGT_HBga6Kw) and burn it on an 8GB micro SD using [etcher](https://www.balena.io/etcher/) or start with a fresh install of [Raspbian Stretch with desktop and recommended software](https://www.raspberrypi.org/downloads/raspbian/)
 
@@ -47,9 +62,10 @@ From [Update Your Pi to the Latest Raspbian](https://learn.adafruit.com/drive-a-
 cd /home/pi/aipod
 python3 aipod.py
 ```
+
 ___
 
-## Auto-update and run on boot
+### Auto-update and run on boot
 
 **Configure WIFI**
 ```bash
@@ -72,7 +88,9 @@ crontab -e
 
 Finally create a hotspot with your phone using `makerslab` for **SSID and password**, and reboot the Raspberry Pi. LCD dislay should print `up to date` if successful, `could not update` otherwise.
 
-## Resources
+___
+
+### Resources
 - [Adafruit-Blinka](https://pypi.org/project/Adafruit-Blinka/)
 - [Adafruit CIRCUITPYTHON_CHARLCD Library](https://circuitpython.readthedocs.io/projects/charlcd/en/latest/)
 - [pygame.mixer.music](https://www.pygame.org/docs/ref/music.html)
